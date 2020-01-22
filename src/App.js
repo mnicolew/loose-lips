@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 import NamePicker from './namePicker';
+import {db} from './db'
 
 
 function App() {
   const [messages, setMessages] = useState([])
-  const[name, setName] = useState('')
+  const[name, setName] = useState('Name')
+
+  useEffect(()=> {
+    db.listen({
+      receive: m=>{
+        setMessages(current=> [m, ...current])  
+      },
+    })
+  }, [])
   console.log(messages)
   return <main>
     <header>
@@ -23,13 +32,16 @@ function App() {
     <div className="field">
       {messages.map((m, i)=>{
         return <div key={i} className='message-wrap'>
-        <div className='message'>{m}</div>
+        <div className='message'>{m.text}</div>
+        <div className='username'>{m.name}</div>
         </div>
       })
     }
     </div>
-    <TextInput onSend={(m)=>{
-      setMessages([m, ...messages])
+    <TextInput onSend={(text)=>{
+      db.send ({
+        text:text, name:name, ts:new Date(),
+      })
     }}/>
   </main>
 }

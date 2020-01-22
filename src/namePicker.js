@@ -36,12 +36,12 @@ function NamePicker(props) {
             }}
         />}
         {showName && <div>{name}</div>}
-        <button onClick={save
+        <button   style={{margin: '0px 1.5vw'}} onClick={save
             // inputEl.current.focus()
             // if (name)
             // props.onSave(name)
             // setShowName(!showName)
-        }>
+        } >
             { showName ? <FiEdit/> : <FiSave/> }
         </button>
     </div>
