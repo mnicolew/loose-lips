@@ -37,6 +37,8 @@ header{
   padding: 0px 10px;
   display: flex;
   align-items: center;
+
+  justify-content: space-between;
 }
 
 .logo {
@@ -71,21 +73,21 @@ header{
 
 .send-button{
   border:none;
-  border-radius: 5px;
+  border-radius: 6px;
   background: #fff0;
-  width:36px;
-  margin-right: 5.4vw;
+  width:16vw;
+  margin-right: 0;
 }
 
 .send-button:hover{
-  background: #EEFFBD;
+  background: rgba(184, 0, 201, 0.335);
 }
 
 .send-burron:pressed{
-  background: #CAEC69;
+  background: rgb(184, 0, 201)9;
 }
 .send-button:focus{
-  outline: #7BC900 solid 1px;
+  outline: rgb(184, 0, 201) solid 1px;
 }
 
 .send-icon{
@@ -102,4 +104,25 @@ header{
 .sent-message{
   position: absolute;
   top: 60px;
+}
+
+.field {
+  height:calc(100vh - 100px);
+  display: flex;
+  flex-direction: column-reverse;
+  /* overflow-y: scroll; */
+  width: 100vw;
+}
+
+.message-wrap {
+  width: 100%;
+}
+
+.message {
+  background: white;
+  font-size: 1.1em;
+  display:inline-block;
+  margin: 10px;
+  padding: 6px 15px 8px 15px;
+  border-radius: 12px;
 }
