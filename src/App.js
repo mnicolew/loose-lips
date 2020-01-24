@@ -8,18 +8,19 @@ import { BrowserRouter, Route } from 'react-router-dom'
 function App() {
 
   useEffect(()=>{
-    const pathname = window.location
-    if (pathname.length<2) window.location.pathname='home'
+    const {pathname} = window.location
+    if(pathname.length<2) window.location.pathname='home'
   }, [])
   return <BrowserRouter>
     <Route path="/:room" component={Room}/>
   </BrowserRouter>
 }
 
-function Room() {
+function Room(props) {
   // const [messages, setMessages] = useState([])
+  const{room}= props.match.params
   const[name, setName] = useState('Name')
-  const messages = useDB()
+  const messages = useDB(room)
 
   // console.log(messages)
   return <main>
@@ -45,7 +46,7 @@ function Room() {
     </div>
     <TextInput onSend={(text)=>{
       db.send ({
-        text:text, name:name, ts:new Date(),
+        text:text, name:name, ts:new Date(), room
       })
     }}/>
   </main>
