@@ -4,9 +4,19 @@ import './App.css';
 import { useState } from 'react';
 import NamePicker from './namePicker';
 import {db, useDB} from './db'
-
-
+import { BrowserRouter, Route } from 'react-router-dom'
 function App() {
+
+  useEffect(()=>{
+    const pathname = window.location
+    if (pathname.length<2) window.location.pathname='home'
+  }, [])
+  return <BrowserRouter>
+    <Route path="/:room" component={Room}/>
+  </BrowserRouter>
+}
+
+function Room() {
   // const [messages, setMessages] = useState([])
   const[name, setName] = useState('Name')
   const messages = useDB()
@@ -25,7 +35,8 @@ function App() {
 
     <div className="field">
       {messages.map((m, i)=>{
-        return <div key={i} className='message-wrap'>
+        return <div key={i} className='message-wrap'
+        from={m.name===name?'me': 'you'}>
         <div className='message'>{m.text}</div>
         <div className='username'>{m.name}</div>
         </div>

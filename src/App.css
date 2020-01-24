@@ -121,6 +121,13 @@ header{
 
 .message-wrap {
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.message-wrap[from='me']{
+  justify-content: flex-end;
 }
 
 .message {

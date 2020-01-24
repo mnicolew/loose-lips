@@ -24,6 +24,7 @@ function NamePicker(props) {
         if(n)
             setName(n)
             save()
+            props.onSave(name)
     }, [])
 
     return <div>
