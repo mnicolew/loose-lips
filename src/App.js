@@ -3,21 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 import NamePicker from './namePicker';
-import {db} from './db'
+import {db, useDB} from './db'
 
 
 function App() {
-  const [messages, setMessages] = useState([])
+  // const [messages, setMessages] = useState([])
   const[name, setName] = useState('Name')
+  const messages = useDB()
 
-  useEffect(()=> {
-    db.listen({
-      receive: m=>{
-        setMessages(current=> [m, ...current])  
-      },
-    })
-  }, [])
-  console.log(messages)
+  // console.log(messages)
   return <main>
     <header>
       <div style={{display:'flex',alignItems:'center'}}>
