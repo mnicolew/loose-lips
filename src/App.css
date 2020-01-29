@@ -70,6 +70,7 @@ header{
   border: solid #cccccc 1px;
   border-radius: 5px;
   padding-left: 10px;
+  margin-left: 5vw;
 }
 
 .text-input input:focus{
